@@ -4,11 +4,13 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T)
+knitr::opts_chunk$set(echo = F)
 
 library(tidyverse)
 library(ggthemes)
+library(knitr)
 ```
+
 
 ```{r, include = F}
 # read in data file
@@ -18,12 +20,20 @@ data <- read_csv("data/01_manyprimates_pilot_merged_data_v2.csv")
 # Table
 This is a table
 
+## here comes the table 
+
+tata 
+
 ```{r}
+data %>%
+  group_by(species)%>%
+  summarise(n())%>%
+  kable()
 
 ```
 
 # Descriptives
-Mean proportion correct responses was `r mean(data$correct)`
+Mean proportion correct responses was `r mean(data$correct)`.
 
 # Plots
 

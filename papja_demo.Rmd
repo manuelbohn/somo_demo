@@ -38,6 +38,8 @@ output            : papaja::apa6_pdf
 
 ```{r load_packages, include = FALSE}
 library("papaja")
+library(tidyverse)
+library(knitr)
 ```
 
 ```{r analysis_preferences}
@@ -48,6 +50,20 @@ set.seed(42)
 Thus far, child development has only been adressed from an adult perspective [@bohn2018social].
 
 # Methods
+
+These are the methods.
+```{r, include = F}
+# read in data file
+data <- read_csv("data/01_manyprimates_pilot_merged_data_v2.csv")
+```
+
+```{r}
+data %>%
+  group_by(species)%>%
+  summarise(n())%>%
+  kable()
+
+```
 
 ## Participants
 
