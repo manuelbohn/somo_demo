@@ -1,0 +1,43 @@
+---
+title: "SoMo_demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+
+library(tidyverse)
+library(ggthemes)
+```
+
+```{r, include = F}
+# read in data file
+data <- read_csv("data/01_manyprimates_pilot_merged_data_v2.csv")
+```
+
+# Table
+This is a table
+
+```{r}
+
+```
+
+# Descriptives
+Mean proportion correct responses was `r mean(data$correct)`
+
+# Plots
+
+This is a plot
+
+```{r}
+plot <- data %>%
+  group_by(species, delay, subject_site)%>%
+  summarise(mean = mean(correct))
+
+ggplot(plot, aes(x = species, col = delay, y = mean))+
+  geom_point(position = position_jitterdodge(jitter.width = .01, jitter.height = .05, dodge.width = .3))+
+  theme_few()+
+  theme(axis.text.x = element_text(angle = 90))
+
+```
+
